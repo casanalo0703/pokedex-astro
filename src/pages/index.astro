@@ -1,0 +1,32 @@
+---
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<div class="container mx-auto">
+			<h1>Pokedex</h1>
+			<form>
+				<label for="pokemon" class="block mb-2 text-sm font-medium text-gray-900">Type the pokemon you want to search</label>
+            	<input type="text" id="pokemon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="pikachu" required />
+				<button type="button" id="submit">Lest's catch them all</button>
+			</form>
+		</div>
+	</body>
+	<script>
+		const submit = document.getElementById("submit");
+		submit.addEventListener("click", async () => {
+    		const pokemon = document.getElementById("pokemon").value;
+			const url = window.location.origin;
+			const response = await fetch(`${url}/api/v1/pokemon/${pokemon}.json`);
+			const data = await response.json();
+			console.log(data);
+  		});
+	</script>
+</html>
